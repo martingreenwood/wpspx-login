@@ -273,6 +273,7 @@ if (sessionStorage.getItem('spektrix_auth') == 'success') {
 add_action( 'wp_footer', 'wpspx_login', 99);
 
 
+
 function wpspx_login_link()
 {
 	?>
@@ -282,3 +283,15 @@ function wpspx_login_link()
 	<?php
 }
 add_shortcode( 'wpspx_login_link', 'wpspx_login_link' );
+
+
+
+function wpspx_custom_login_link ( $items, $args ) {
+	$options = get_option( 'wpspx_login_settings' );
+	if ($args->theme_location == $options['wpspx_login_link_location'] ) {
+		$items .= '<li><a class="loginlink" onclick="wpspxLogin()">Log in</a></li>';
+	}
+	return $items;
+}
+
+add_filter( 'wp_nav_menu_items', 'wpspx_custom_login_link', 10, 2 );

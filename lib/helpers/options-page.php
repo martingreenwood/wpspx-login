@@ -17,8 +17,16 @@ function wpspx_login_settings_init(  ) {
 	);
 
 	add_settings_field(
+		'wpspx_login_link_location',
+		__( 'Login Link Location', 'wpspx' ),
+		'wpspx_login_link_location_render',
+		'wpspxLoginPage',
+		'wpspx_wpspxLoginPage_section'
+	);
+
+	add_settings_field(
 		'wpspx_login_colour',
-		__( 'Login background colour', 'wpspx' ),
+		__( 'Login Colours', 'wpspx' ),
 		'wpspx_login_colour_render',
 		'wpspxLoginPage',
 		'wpspx_wpspxLoginPage_section'
@@ -26,14 +34,28 @@ function wpspx_login_settings_init(  ) {
 
 }
 
-// Basket background colour
+// Login background colour
 function wpspx_login_colour_render(  ) {
 
 	$options = get_option( 'wpspx_login_settings' );
 	?>
 	<input type='text' class="wpspx-color-field" name='wpspx_login_settings[wpspx_login_background_colour]' value='<?php echo $options['wpspx_login_background_colour']; ?>'>
 	<?php
+}
 
+// Login background colour
+function wpspx_login_link_location_render(  ) {
+
+	$options = get_option( 'wpspx_login_settings' );
+	$get_nav_menus = get_registered_nav_menus();
+	?>
+	<select class="wpspx_login_link_location" name="wpspx_login_settings[wpspx_login_link_location]">
+		<option value="0" <?php if ( $options['wpspx_login_link_location'] == '0' ) echo 'selected="selected"'; ?>>None</option>
+	<?php foreach ($get_nav_menus as $key => $value): ?>
+		<option value="<?php echo $key ?>" <?php if ( $options['wpspx_login_link_location'] == $key ) echo 'selected="selected"'; ?>><?php echo $value ?></option>
+	<?php endforeach ?>
+	</select>
+	<?php
 }
 
 
@@ -86,7 +108,16 @@ function wpspx_login_options_page(  ) {
 								do_settings_sections( 'wpspxLoginPage' );
 								?>
 								<br /><br /><?php
-								submit_button('Save Settings');
+								$license = get_option( 'wpspx_licence_settings' );
+								$key = $license['wpspx_license_key'];
+								if ($key) {
+									$validation = wpspx_callback_validate($key);
+									if ($validation->success == 1):
+										submit_button('Save Settings');
+									else:
+										echo '<input disabled type="submit" name="disbaled" id="disbaled" class="button button-large" value="Please Register WPSPX to Update">';
+									endif;
+								}
 								?>
 							</section>
 						</div>
