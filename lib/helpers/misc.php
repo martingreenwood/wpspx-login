@@ -8,7 +8,6 @@ if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 function wpspx_login() {
 ?>
-
 <div class="accountbox modal">
 	<div class="modal-background"></div>
 	<div class="modal-card">
@@ -276,11 +275,7 @@ add_action( 'wp_footer', 'wpspx_login', 99);
 
 function wpspx_login_link()
 {
-	?>
-	<a class="loginlink button is-primary" onclick="wpspxLogin()">
-		Log in
-	</a>
-	<?php
+	echo '<a class="loginlink button is-primary" onclick="wpspxLogin()">Log in</a>';
 }
 add_shortcode( 'wpspx_login_link', 'wpspx_login_link' );
 
@@ -293,5 +288,4 @@ function wpspx_custom_login_link ( $items, $args ) {
 	}
 	return $items;
 }
-
 add_filter( 'wp_nav_menu_items', 'wpspx_custom_login_link', 10, 2 );
