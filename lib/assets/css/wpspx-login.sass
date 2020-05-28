@@ -1,0 +1,146 @@
+$color-alert-error:		#f44336 !default
+$color-alert-success:	#4CAF50 !default
+$color-alert-info:		#2196F3 !default
+$color-alert-warn:		#ff9800 !default
+
+#menu-item-wpspx-login
+	display: flex
+	flex-flow: wrap
+
+	a, .greeting
+		margin-left: 1rem
+		width: auto
+		flex: auto
+
+	.greeting, .loginlink
+		margin-left: 0
+
+
+.accountbox.modal
+	display: none
+	position: fixed
+	top: 0
+	left: 0
+	width: 100vw
+	height: 100vh
+	align-content: center
+	align-items: center
+	align-self: center
+	z-index: 99
+
+	&.is-active
+	    display: flex
+
+	.modal-background
+		background: rgba(255,255,255,0.5)
+		position: absolute
+		top: 0
+		left: 0
+		width: 100vw
+		height: 100vh
+
+	.modal-card
+		margin: 0 auto
+		width: 80vw
+		max-width: 600px
+		padding: 2rem
+		background: white
+		border: 1px solid #cccccc
+		box-shadow: 0px 0px 94px -26px #333
+		position: relative
+
+		.modal-card-head
+			display: flex
+			justify-content: space-between
+			align-items: center
+			align-content: center
+			align-self: center
+			margin-bottom: 3rem
+
+			.modal-card-title
+				margin: 0
+				font-weight: 600
+				font-size: 2rem
+
+			.delete
+				color: #333
+				background: transparent
+				border: 0
+				box-shadow: none
+				outline: 0
+				padding: 0
+				font-size: 3rem
+				height: auto
+				line-height: 1
+
+		.modal-card-body
+			margin-bottom: 3rem
+
+			.formcontent
+
+				.field
+					margin-bottom: 1rem
+					display: flex
+					flex-flow: wrap
+					align-items: center
+					align-content: center
+
+					.label
+						flex: 0 0 30%
+						padding-right: 1rem
+						box-sizing: border-box
+
+					.control
+						flex: 0 0 70%
+
+						&.is-horizontal
+							display: flex
+							flex-flow: wrap
+							justify-content: space-between
+
+							.field
+								flex: 0 0 calc(50% - 0.5rem)
+								margin-bottom: 0
+
+					&:last-of-type
+						margin-bottom: 0
+
+			.message
+				margin-top: 3rem
+				padding: 1.5rem
+				text-align: center
+				color: white
+				font-weight: 800
+				font-size: 1.4rem
+				background-color: $color-alert-info
+
+				&.is-danger
+					background-color: $color-alert-error
+				&.is-success
+					background-color: $color-alert-success
+
+
+		.modal-card-foot
+			display: flex
+			justify-content: space-between
+
+			button
+				position: relative
+
+				span
+					background-image: url(../img/rolling-1s-200px.svg)
+					background-size: 18px
+					background-repeat: no-repeat
+					background-color: inherit
+					background-position: center
+					position: absolute
+					z-index: 1
+					margin: 0
+					width: 100%
+					height: 100%
+					left: 0
+					top: 0
+					display: none
+
+					&.show
+						display: block
