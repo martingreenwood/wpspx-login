@@ -4,7 +4,7 @@
  * Tags: spektrix, tickets, api, booking, theatre
  * Plugin URI: https://wearebeard.com/wpwpx
  * Description: A WPSPX addon - login box
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Martin Greenwood
  * Author URI: https://martingreenwood.com
  * Text Domain: wpspx-basket
